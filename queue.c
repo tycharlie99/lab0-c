@@ -1,8 +1,8 @@
+#include "queue.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "queue.h"
 
 /* Create an empty queue */
 struct list_head *q_new()
@@ -40,7 +40,15 @@ element_t *q_remove_tail(struct list_head *head, char *sp, size_t bufsize)
 /* Return number of elements in queue */
 int q_size(struct list_head *head)
 {
-    return -1;
+    if (!head)
+        return 0;
+
+    int len = 0;
+    struct list_head *cur;
+    list_for_each(cur, head)
+        len++;
+
+    return len;
 }
 
 /* Delete the middle node in queue */
